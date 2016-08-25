@@ -1,0 +1,123 @@
+@import "reset";
+@import "flex";
+body {
+    background: #fee2ea;
+    color: #000;
+    font-size: 0.25rem;
+    line-height: 0.36rem;
+}
+.wrap {
+    width: 7.5rem;
+    max-width: 7.5rem;
+    margin: 0 auto;
+    .logo {
+        height: 5.51rem;
+        background: url(../images/logo.jpg);
+        background-size: cover;
+    }
+    .box {
+        position: relative;
+        margin: 0.8rem 0.1rem 0;
+        padding-top: 0.65rem;
+        padding-bottom: 0.9rem;
+        background: #fff;
+        .title {
+            width: 100%;
+            position: absolute;
+            top: -0.37rem;
+            left: 50%;
+        }
+        .item {
+            padding: 0 0.22rem;
+            & + .item {
+                margin-top: 0.4rem;
+            }
+            .group-name {
+                font-size: 0.35rem;
+                text-align: center;
+                span {
+                    display: inline-block;
+                    position: relative;
+                    &:before, &:after {
+                        position: absolute;
+                        display: inline-block;
+                        content: "";
+                        width: 0.83rem;
+                        height: 0.52rem;
+                        background: url(../images/xiexian-2.png);
+                        background-size: cover;
+                    }
+                    &:before {
+                        left: -1rem;
+                        top: 0.1rem;
+                    }
+                    &:after {
+                        right: -1rem;
+                        top: 0.1rem;
+                    }
+                }
+            }
+            .group-reason {
+                padding: 0.3rem 0;
+            }
+            .group-image {
+                img {
+                    display: block;
+                    max-width: 6.9rem;
+                    box-sizing: border-box;
+                    border: 0.02rem solid #000;
+                }
+            }
+            .group-join {
+                text-align: center;
+                margin-top: -0.32rem;
+                font-size: 0;
+                a {
+                    display: inline-block;
+                    width: 1.63rem;
+                    height: 0.55rem;
+                    background: url(../images/join.png);
+                    background-size: cover;
+                }
+            }
+            .line {
+                height: 0.04rem;
+                margin-top: 0.2rem;
+                background: url(../images/line.jpg);
+            }
+        }
+    }
+    .box1 {
+        .title {
+            width: 4.85rem;
+            margin-left: -2.42rem;
+            img {
+                width: 4.85rem;
+                height: 0.69rem;
+            }
+        }
+    }
+    .box2 {
+        padding-bottom: 0;
+        .title {
+            width: 3.6rem;
+            margin-left: -1.8rem;
+            img {
+                width: 3.6rem;
+                height: 0.69rem;
+            }
+        }
+    }
+    .foot {
+        width: 7.5rem;
+        height: 3.5rem;
+        background: url(../images/foot.jpg);
+        background-size: cover;
+        a {
+            width: 4.24rem;
+            height: 0.78rem;
+            display: inline-block;
+            margin: 1.5rem 0 0 1.46rem;
+        }
+    }
+}
