@@ -6,9 +6,6 @@
 // 安装依赖
 npm install
 
-// 生成静态文件
-npm run build
-
 // 开发模式
 npm run dev
 
