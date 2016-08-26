@@ -10,25 +10,23 @@
   "repository": {},
   "author": "LinCenYing",
   "license": "MIT",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "defaults": "^1.0.3",
     "end-of-stream": "^1.1.0",
-    "glob-stream": "^5.3.2",
-    "glob-watcher": "^2.0.0",
+    "glob-stream": "^5.3.3",
+    "glob-watcher": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-connect": "^3.2.2",
-    "gulp-less": "^3.0.5",
+    "gulp-connect": "^5.0.0",
+    "gulp-less": "^3.1.0",
     "gulp-livereload": "^3.8.1",
-    "inflight": "^1.0.4",
-    "less-plugin-autoprefix": "^1.5.0",
-    "micromatch": "^2.3.10",
-    "minimatch": "^3.0.0",
-    "wrappy": "^1.0.1"
+    "inflight": "^1.0.5",
+    "less-plugin-autoprefix": "^1.5.1",
+    "micromatch": "^2.3.11",
+    "minimatch": "^3.0.3",
+    "wrappy": "^1.0.2"
   },
   "scripts": {
-    "dev": "gulp start"  
+    "dev": "gulp start"
   }
 }
