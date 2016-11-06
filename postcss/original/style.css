@@ -1,0 +1,18 @@
+:root {
+    --color: red;
+}
+
+div {
+    color: var(--color);
+}
+
+.a {
+    display: flex;
+    .b {
+        flex: none;
+    }
+}
+
+.icon {
+    size: 48px;
+}

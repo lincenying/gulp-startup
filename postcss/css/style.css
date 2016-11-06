@@ -1,0 +1,22 @@
+div {
+    color: red;
+}
+
+.a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.a .b {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+        -ms-flex: none;
+            flex: none;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+}

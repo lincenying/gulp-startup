@@ -2,34 +2,46 @@
 
 var gulp = require('gulp'),
     less = require('gulp-less'),
-    connect = require('gulp-connect')
+    connect = require('gulp-connect'),
+    postcss = require('gulp-postcss'),
+    browserslist = require('browserslist'),
+    LessPluginAutoPrefix = require('less-plugin-autoprefix'),
+    salad = require('postcss-salad')
 
-var basedir = '20160708/'
-
-var LessPluginAutoPrefix = require('less-plugin-autoprefix'),
+var basedir = 'postcss/',
+    browsers = browserslist('last 2 version, > 0.1%'),
     autoprefix = new LessPluginAutoPrefix({
-        browsers: [
-            'ie >= 8',
-            'ie_mob >= 10',
-            'ff >= 26',
-            'chrome >= 30',
-            'safari >= 7',
-            'ios >= 7',
-            'android >= 2.3'
-        ]
+        browsers: browsers
     })
-gulp.task('start', ['auto_server', 'auto_task'])
+
+gulp.task('start_less', ['auto_server', 'auto_task_less'])
+gulp.task('start_postcss', ['auto_server', 'auto_task_postcss'])
 
 // 自动任务
-gulp.task('auto_task', function() {
+gulp.task('auto_task_less', function() {
     gulp.watch(basedir + 'less/*.less', ['auto_less'])
     gulp.watch(basedir + '*.html', ['auto_refresh_from_html'])
     gulp.watch(basedir + 'css/*.css', ['auto_refresh_from_css'])
 })
+gulp.task('auto_task_postcss', function() {
+    gulp.watch(basedir + 'original/*.css', ['auto_postcss'])
+    gulp.watch(basedir + '*.html', ['auto_refresh_from_html'])
+    gulp.watch(basedir + 'css/*.css', ['auto_refresh_from_css'])
+})
 
+// 编译less文件
 gulp.task('auto_less', function() {
-    gulp.src(basedir + 'less/style.less')
+    gulp.src(basedir + 'less/*.less')
         .pipe(less({ plugins: [autoprefix] }))
+        .pipe(gulp.dest(basedir + 'css/'))
+})
+
+// 编辑postcss文件
+gulp.task('auto_postcss', function() {
+    gulp.src(basedir + 'original/*.css')
+        .pipe(postcss([
+            salad({browsers: browsers})
+        ]))
         .pipe(gulp.dest(basedir + 'css/'))
 })
 

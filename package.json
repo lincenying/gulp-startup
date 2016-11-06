@@ -1,32 +1,29 @@
 {
-  "name": "gulp-cli",
-  "version": "1.0.0",
-  "description": "a collection of simple demos of gulp",
-  "main": "gulpfile.js",
-  "keywords": [
-    "build",
-    "gulp"
-  ],
-  "repository": {},
-  "author": "LinCenYing",
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
-    "defaults": "^1.0.3",
-    "end-of-stream": "^1.1.0",
-    "glob-stream": "^5.3.3",
-    "glob-watcher": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-connect": "^5.0.0",
-    "gulp-less": "^3.1.0",
-    "gulp-livereload": "^3.8.1",
-    "inflight": "^1.0.5",
-    "less-plugin-autoprefix": "^1.5.1",
-    "micromatch": "^2.3.11",
-    "minimatch": "^3.0.3",
-    "wrappy": "^1.0.2"
-  },
-  "scripts": {
-    "dev": "gulp start"
-  }
+    "name": "gulp-cli",
+    "version": "2.0.0",
+    "description": "a collection of simple demos of gulp",
+    "main": "gulpfile.js",
+    "keywords": [
+        "build",
+        "gulp"
+    ],
+    "repository": {},
+    "author": "LinCenYing",
+    "license": "MIT",
+    "dependencies": {
+        "browserslist": "^1.4.0",
+        "gulp": "^3.9.1",
+        "gulp-connect": "^5.0.0",
+        "gulp-less": "^3.1.0",
+        "gulp-livereload": "^3.8.1",
+        "gulp-postcss": "^6.2.0",
+        "less-plugin-autoprefix": "^1.5.1",
+        "postcss-cssnext": "^2.8.0",
+        "postcss-salad": "^1.0.5"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "less": "gulp start_less",
+        "postcss": "gulp start_postcss"
+    }
 }

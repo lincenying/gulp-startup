@@ -1,17 +1,25 @@
-# gulp-less-cli
+# gulp-cli
 
-切图必备, 自动编译less, 自动添加css3前缀, 自动刷新浏览器
+切图必备, 自动编译less/postcss, 自动添加css3前缀, 自动刷新浏览器
 
 ```
 // 安装依赖
-npm install
+npm install  or  yarn
 
-// 开发模式
-npm run dev
+// less 模式
+npm run less
 
 或者
 
-gulp start
+gulp start_less
+
+// postcss-salad 模式
+
+npm run postcss
+
+或者
+
+gulp start_postcss
 ```
 
 打开 http://localhost:9092
