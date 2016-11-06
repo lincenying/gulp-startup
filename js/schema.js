@@ -9,13 +9,7 @@ var UA = {
 var timeout
 function replaceSchema(href) {
     var schema = [
-        ['naitang://app/question/', 'http://www.naitang.com/question/'],
-        ['naitang://app/answer/', 'http://www.naitang.com/answer/'],
-        ['naitang://app/topic/', 'http://www.naitang.com/topic/'],
-        ['naitang://app/feature/', 'http://www.naitang.com/feature/'],
-        ['naitang://app/group/', 'http://www.naitang.com/group/detail/'],
-        ['naitang://app/post/', 'http://www.naitang.com/group/post/detail/'],
-        ['naitang://app/openHome', 'http://www.naitang.com/app']
+        ['xxx://app/question/', 'http://www.xxx.com/question/']
     ]
     var len = schema.length
     for (var i = 0; i < len; i += 1) {
@@ -33,16 +27,16 @@ document.querySelector('body').addEventListener('click', function(e) {
                 if (UA.App) {
                     window.location.href = href
                 } else if (UA.WeiXin) {
-                    window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.naitang'
+                    window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.xxx'
                 } else if (UA.Android) {
                     window.location.href = href
                     timeout = setTimeout(function() {
-                        window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.naitang'
+                        window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.xxx'
                     }, 1000)
                 } else if (UA.iPhone) {
                     window.location.href = href
                     timeout = setTimeout(function() {
-                        window.location.href = 'itms-apps://itunes.apple.com/cn/app/nai-tang/id1031435011?mt=8'
+                        window.location.href = 'itms-apps://itunes.apple.com/cn/app/xxx/id0000000000?mt=8'
                     }, 1000)
                 } else {
                     var pchref = tg.getAttribute('data-pc')
