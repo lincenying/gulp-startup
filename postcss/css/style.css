@@ -1,22 +1,220 @@
+.clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both;
+}/* 变量 */
+
 div {
     color: red;
 }
 
-.a {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+
+/* 选择器 */
+.article h1+p, .article h3+p, .article h3+p, .article h4+p, .article h5+p, .article h6+p {
+    margin-top: 0;
 }
 
-.a .b {
-    -webkit-box-flex: 0;
-    -webkit-flex: none;
-        -ms-flex: none;
-            flex: none;
+
+/* 媒体查询 */
+@media (max-width: 30em) {
+    /* styles for small viewport */
 }
+
+
+/* 嵌套 */
+
+.a, .b {
+    color: red
+}
+
+.a .c, .a .d, .b .c, .b .d {
+    color: white;
+}
+
+.a .a, .b .b {
+    color: blue;
+}
+
+.a:hover, .b:hover {
+    color: black;
+}
+
+@media (min-width: 30em) {
+
+    .a, .b {
+        color: yellow;
+    }
+    }
+
+@media (min-width: 30em) and (min-device-pixel-ratio: 1.5) {
+
+    .a, .b {
+        color: green;
+    }
+}
+
+
+/* Size */
 
 .icon {
     width: 48px;
     height: 48px;
+}
+
+
+/*Position*/
+
+.banner {
+    top: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+}
+
+
+/*Color*/
+
+.canvas {
+    color: #abccfc;
+    background-color: #212231;
+}
+
+
+/*Font-Size*/
+
+.heading {
+    font-size: 1.25em;
+    line-height: 2;
+}
+
+
+/*Border*/
+
+.container {
+    border-width: 1px 2px;
+    border-color: #343434;
+}
+
+
+/*矩形*/
+
+.rect-a {
+    width: 30px;
+    height: 50px;
+    background-color: #ff0;
+}
+
+.rect-b {
+    width: 30px;
+    background-color: #ff0;
+}
+
+
+/*圆形*/
+
+.circle-a {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ff0;
+}
+
+.circle-b {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+/*文本超长溢出省略号*/
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ellipsis2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+
+/*Clearfix*/
+
+.clearfix {
+}
+
+
+/*Disabled*/
+
+.disabled {
+    background-color: #ccc;
+    border-color: #f00;
+    color: #333;
+    cursor: default;
+    pointer-events: none;
+}
+
+.sky {
+    margin: 40px 2px 3em 100%;
+    margin: 2.5rem 2px 3em 100%;
+    color: blue;
+}
+
+@media screen and (min-width: 20rem) {
+    .leaf {
+        margin-bottom: 21.328px;
+        margin-bottom: 1.333rem;
+        font-size: 24px;
+        font-size: 1.5rem;
+    }
+}
+
+.search, .notice {
+    background: green;
+}
+
+.search {
+    padding-left: 16px;
+}
+
+.search::after {
+    content: "";
+    background-url: url(/icons/search.png);
+}
+
+.menu {
+    background: rgb(5, 95, 204);
+    width: 800px;
+}
+
+.col-10 {
+    width: 10%;
+}
+
+.col-20 {
+    width: 20%;
+}
+
+.col-30 {
+    width: 30%;
+}
+
+.icon-foo {
+    background: url(icons/foo.png);
+}
+
+.icon-bar {
+    background: url(icons/bar.png);
+}
+
+.icon-baz {
+    background: url(icons/baz.png);
 }
