@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     salad = require('postcss-salad')
 
-var basedir = 'E:/web/webpack/mmf-blog-v2-vue2/html/',
+var basedir = 'less/', // <= 修改该路径
     browsers = browserslist('last 2 version, > 0.1%'),
     lessAutoprefix = new LessPluginAutoPrefix({
         browsers: browsers
@@ -42,14 +42,14 @@ gulp.task('auto_task_scss', function() {
 
 // 编译less文件
 gulp.task('auto_less', function() {
-    gulp.src(basedir + 'less/*.less')
+    gulp.src([basedir + 'less/*.less', '!' + basedir + 'less/_*.less'])
         .pipe(less({ plugins: [lessAutoprefix] }))
         .pipe(gulp.dest(basedir + 'css/'))
 })
 
 // 编辑postcss文件
 gulp.task('auto_postcss', function() {
-    gulp.src(basedir + 'original/*.css')
+    gulp.src([basedir + 'original/*.css', '!' + basedir + 'original/_*.css'])
         .pipe(postcss([
             salad({browsers: browsers})
         ]))
@@ -58,7 +58,7 @@ gulp.task('auto_postcss', function() {
 
 // 编译scss文件
 gulp.task('auto_scss', function() {
-    gulp.src(basedir + 'scss/style.scss')
+    gulp.src([basedir + 'scss/*.scss', '!' + basedir + 'scss/*.scss'])
         .pipe(sass())
         .pipe(autoprefixer(browsers))
         .pipe(gulp.dest(basedir + 'css/'))
