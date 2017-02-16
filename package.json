@@ -10,21 +10,19 @@
   "repository": {},
   "author": "LinCenYing",
   "license": "MIT",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefix": "^1.0.1",
-    "browserslist": "^1.4.0",
+    "browserslist": "^1.7.3",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
-    "gulp-less": "^3.1.0",
+    "gulp-less": "^3.3.0",
     "gulp-livereload": "^3.8.1",
-    "gulp-postcss": "^6.2.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-postcss": "^6.3.0",
+    "gulp-sass": "^3.1.0",
     "less-plugin-autoprefix": "^1.5.1",
-    "postcss-cssnext": "^2.8.0",
-    "postcss-salad": "^1.0.5"
+    "postcss-cssnext": "^2.9.0",
+    "postcss-salad": "^1.0.8"
   },
   "scripts": {
     "less": "gulp start_less",
