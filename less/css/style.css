@@ -34,8 +34,8 @@ select,
 textarea {
   /* for ie */
   /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
-  font: 12px/1 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
-  /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+  font-size: 12px;
+  font-family: 'Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif';
 }
 h1 {
   font-size: 18px;
@@ -139,25 +139,35 @@ html {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* justify-content 旧版webkit兼容 */
-/* align-items 旧版webkit兼容 */
-/* webkit-box-orient 旧版webkit兼容 */
+html {
+  font-size: 13.33333333vw;
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 42.6px;
+  }
+}
+@media screen and (min-width: 540px) {
+  html {
+    font-size: 72px;
+  }
+}
 body {
-  background: #fee2ea;
+  max-width: 540px;
+  min-width: 320px;
+  margin: 0 auto;
+  background: #f4f4f4;
   color: #000;
   font-size: 0.25rem;
   line-height: 0.36rem;
 }
 .wrap {
-  width: 7.5rem;
-  max-width: 7.5rem;
-  margin: 0 auto;
+  background: #fee2ea;
 }
 .wrap .logo {
   height: 5.51rem;
   background: url(../images/logo.jpg);
-  -webkit-background-size: cover;
-          background-size: cover;
+  background-size: cover;
 }
 .wrap .box {
   position: relative;
@@ -194,8 +204,7 @@ body {
   width: 0.83rem;
   height: 0.52rem;
   background: url(../images/xiexian-2.png);
-  -webkit-background-size: cover;
-          background-size: cover;
+  background-size: cover;
 }
 .wrap .box .item .group-name span:before {
   left: -1rem;
@@ -212,7 +221,6 @@ body {
   display: block;
   max-width: 6.9rem;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
           box-sizing: border-box;
   border: 0.02rem solid #000;
 }
@@ -226,8 +234,7 @@ body {
   width: 1.63rem;
   height: 0.55rem;
   background: url(../images/join.png);
-  -webkit-background-size: cover;
-          background-size: cover;
+  background-size: cover;
 }
 .wrap .box .item .line {
   height: 0.04rem;
@@ -257,8 +264,7 @@ body {
   width: 7.5rem;
   height: 3.5rem;
   background: url(../images/foot.jpg);
-  -webkit-background-size: cover;
-          background-size: cover;
+  background-size: cover;
 }
 .wrap .foot a {
   width: 4.24rem;

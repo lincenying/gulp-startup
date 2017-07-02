@@ -1,18 +1,36 @@
 @import "_reset";
+
+// 设计稿宽度
+@vm_design: 750;
+// 为什么设置 100? 设置成便于计算, 计算rem时只需要将 设计稿的宽度 / 100 即可
+// 如果给的是 375 的标注图, 也只需要将标注尺寸 * 2 / 100 即可
+@vm_fontsize: 100;
+html {
+    font-size: @vm_fontsize / @vm_design * 100vw; 
+    // 同时，通过Media Queries 限制根元素最大最小值
+    @media screen and (max-width: 320px) {
+        font-size: 42.6px; // 320 / 750 * 100
+    }
+    @media screen and (min-width: 540px) {
+        font-size: 72px; // 540 / 750 * 100
+    }
+}
+// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
 body {
-    background: #fee2ea;
+    max-width: 540px;
+    min-width: 320px;
+    margin: 0 auto;
+    background: #f4f4f4;
     color: #000;
     font-size: 0.25rem;
     line-height: 0.36rem;
 }
 .wrap {
-    width: 7.5rem;
-    max-width: 7.5rem;
-    margin: 0 auto;
+    background: #fee2ea;
     .logo {
         height: 5.51rem;
         background: url(../images/logo.jpg);
-        background-size: cover;
+        background-size: cover; 
     }
     .box {
         position: relative;
