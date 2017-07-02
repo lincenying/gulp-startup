@@ -219,10 +219,10 @@ body {
 }
 .wrap .box .item .group-image img {
   display: block;
-  max-width: 6.9rem;
+  max-width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  border: 0.02rem solid #000;
+  border: 1px solid #000;
 }
 .wrap .box .item .group-join {
   text-align: center;
@@ -233,8 +233,14 @@ body {
   display: inline-block;
   width: 1.63rem;
   height: 0.55rem;
-  background: url(../images/join.png);
-  background-size: cover;
+  border-radius: 0.275rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffc3c3), to(#f25f79));
+  background: -webkit-linear-gradient(top, #ffc3c3, #f25f79);
+  background: linear-gradient(to bottom, #ffc3c3, #f25f79);
+  font-size: 0.25rem;
+  color: #fff;
+  line-height: 0.55rem;
+  text-decoration: underline;
 }
 .wrap .box .item .line {
   height: 0.04rem;
@@ -261,10 +267,9 @@ body {
   height: 0.69rem;
 }
 .wrap .foot {
-  width: 7.5rem;
   height: 3.5rem;
-  background: url(../images/foot.jpg);
-  background-size: cover;
+  background: url(../images/foot.jpg) no-repeat;
+  background-size: contain;
 }
 .wrap .foot a {
   width: 4.24rem;
