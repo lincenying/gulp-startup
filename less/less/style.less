@@ -9,10 +9,10 @@ html {
     font-size: @vm_fontsize / @vm_design * 100vw; 
     // 同时，通过Media Queries 限制根元素最大最小值
     @media screen and (max-width: 320px) {
-        font-size: 42.6px; // 320 / 750 * 100
+        font-size: 320px / @vm_design * @vm_fontsize
     }
     @media screen and (min-width: 540px) {
-        font-size: 72px; // 540 / 750 * 100
+        font-size: 540px / @vm_design * @vm_fontsize
     }
 }
 // body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
