@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     salad = require('postcss-salad')
 
 var basedir = 'less/', // <= 修改该路径
-    browsers = browserslist('last 2 version, > 0.1%'),
+    browsers = browserslist('last 50 version, > 0.1%'),
     lessAutoprefix = new LessPluginAutoPrefix({
         browsers: browsers
     })
@@ -23,7 +23,7 @@ gulp.task('start_scss', ['auto_server', 'auto_task_scss'])
 // 自动任务
 // less 相关任务
 gulp.task('auto_task_less', function() {
-    gulp.watch(basedir + 'less/*.less', ['auto_less'])
+    gulp.watch(basedir + 'less/**/*.less', ['auto_less'])
     gulp.watch(basedir + '*.html', ['auto_refresh_from_html'])
     gulp.watch(basedir + 'css/*.css', ['auto_refresh_from_css'])
 })
