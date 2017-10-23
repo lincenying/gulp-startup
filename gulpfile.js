@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     salad = require('postcss-salad')
 
-var basedir = 'less/', // <= 修改该路径
+var basedir = 'daliangju/2017.10.18/', // <= 修改该路径
     browsers = browserslist('last 50 version, > 0.1%'),
     lessAutoprefix = new LessPluginAutoPrefix({
         browsers: browsers
@@ -73,11 +73,11 @@ gulp.task('auto_server', function() {
         middleware: function(connect, opt) {
             return [
                 proxy('/base_api',  {
-                    target: 'http://127.0.0.1:3000',
+                    target: 'http://admin.ju-inc.com',
                     changeOrigin:true
                 }),
                 proxy('/shike_api', {
-                    target: 'http://127.0.0.1:3000',
+                    target: 'http://admin.ju-inc.com',
                     changeOrigin:true
                 })
             ]
