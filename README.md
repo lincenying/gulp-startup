@@ -1,4 +1,4 @@
-# gulp-cli
+# gulp-startup
 
 切图必备, 自动编译less/postcss, 自动添加css3前缀, 自动刷新浏览器
 
