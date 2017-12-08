@@ -59,7 +59,7 @@ gulp.task('auto_postcss', function() {
 
 // 编译scss文件
 gulp.task('auto_scss', function() {
-    gulp.src([basedir + 'scss/**/*.scss', '!' + basedir + 'scss/**/*.scss'])
+    gulp.src([basedir + 'scss/**/*.scss', '!' + basedir + 'scss/**/_*.scss'])
         .pipe(sass())
         .pipe(autoprefixer(browsers))
         .pipe(gulp.dest(basedir + 'css/'))
