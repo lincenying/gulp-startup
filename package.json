@@ -13,8 +13,11 @@
   "dependencies": {},
   "devDependencies": {
     "autoprefix": "^1.0.1",
-    "browserslist": "^4.4.2",
-    "gulp": "^4.0.0",
+    "browserslist": "^4.6.6",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "gulp": "^4.0.2",
     "gulp-connect": "^5.7.0",
     "gulp-less": "^4.0.1",
     "gulp-livereload": "^4.0.1",
@@ -23,7 +26,8 @@
     "http-proxy-middleware": "^0.19.1",
     "less-plugin-autoprefix": "^2.0.0",
     "postcss-cssnext": "^3.1.0",
-    "postcss-salad": "^2.0.1"
+    "postcss-salad": "^2.0.1",
+    "prettier": "^1.18.2"
   },
   "scripts": {
     "less": "gulp start_less",

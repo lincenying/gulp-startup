@@ -5,16 +5,14 @@ var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
     //sass = require('gulp-sass'),
     connect = require('gulp-connect'),
-    browserslist = require('browserslist'),
     proxy = require('http-proxy-middleware'),
     LessPluginAutoPrefix = require('less-plugin-autoprefix'),
     autoprefixer = require('autoprefixer'),
     salad = require('postcss-salad')
 
 var basedir = 'less/', // <= 修改该路径
-    browsers = browserslist('last 50 version, > 0.1%'),
     lessAutoprefix = new LessPluginAutoPrefix({
-        browsers: browsers
+        browsers: ['last 3 versions']
     })
 
 gulp.task('auto_server', function() {
