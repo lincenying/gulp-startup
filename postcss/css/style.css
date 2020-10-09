@@ -11,18 +11,17 @@ div {
     color: red;
 }
 
-
 /* 选择器 */
+
 .article h1+p, .article h3+p, .article h3+p, .article h4+p, .article h5+p, .article h6+p {
     margin-top: 0;
 }
 
-
 /* 媒体查询 */
+
 @media (max-width: 30em) {
     /* styles for small viewport */
 }
-
 
 /* 嵌套 */
 
@@ -56,14 +55,12 @@ div {
     }
 }
 
-
 /* Size */
 
 .icon {
     width: 48px;
     height: 48px;
 }
-
 
 /*Position*/
 
@@ -74,14 +71,12 @@ div {
     position: fixed;
 }
 
-
 /*Color*/
 
 .canvas {
     color: #abccfc;
     background-color: #212231;
 }
-
 
 /*Font-Size*/
 
@@ -90,14 +85,12 @@ div {
     line-height: 2;
 }
 
-
 /*Border*/
 
 .container {
     border-width: 1px 2px;
     border-color: #343434;
 }
-
 
 /*矩形*/
 
@@ -111,7 +104,6 @@ div {
     width: 30px;
     background-color: #ff0;
 }
-
 
 /*圆形*/
 
@@ -128,7 +120,6 @@ div {
     border-radius: 50%;
 }
 
-
 /*文本超长溢出省略号*/
 
 .ellipsis {
@@ -141,16 +132,13 @@ div {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
-
 
 /*Clearfix*/
 
 .clearfix {
 }
-
 
 /*Disabled*/
 
@@ -163,16 +151,13 @@ div {
 }
 
 .sky {
-    margin: 40px 2px 3em 100%;
     margin: 2.5rem 2px 3em 100%;
     color: blue;
 }
 
 @media screen and (min-width: 20rem) {
     .leaf {
-        margin-bottom: 21.328px;
         margin-bottom: 1.333rem;
-        font-size: 24px;
         font-size: 1.5rem;
     }
 }

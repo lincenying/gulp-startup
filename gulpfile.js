@@ -3,16 +3,17 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
     postcss = require('gulp-postcss'),
-    //sass = require('gulp-sass'),
+    sass = require('gulp-sass'),
     connect = require('gulp-connect'),
     proxy = require('http-proxy-middleware'),
     LessPluginAutoPrefix = require('less-plugin-autoprefix'),
     autoprefixer = require('autoprefixer'),
     salad = require('postcss-salad')
 
-var basedir = 'less/', // <= 修改该路径
+var browsers = ['last 3 versions']
+var basedir = 'postcss/', // <= 修改该路径
     lessAutoprefix = new LessPluginAutoPrefix({
-        browsers: ['last 3 versions']
+        browsers: browsers
     })
 
 gulp.task('auto_server', function() {
@@ -23,11 +24,11 @@ gulp.task('auto_server', function() {
             livereload: true,
             middleware: function(connect, opt) {
                 return [
-                    proxy('/base_api',  {
+                    proxy.createProxyMiddleware('/base_api',  {
                         target: 'http://127.0.0.1:3000',
                         changeOrigin:true
                     }),
-                    proxy('/shike_api', {
+                    proxy.createProxyMiddleware('/shike_api', {
                         target: 'http://127.0.0.1:3000',
                         changeOrigin:true
                     })
@@ -81,7 +82,7 @@ gulp.task('auto_postcss', function() {
 gulp.task('auto_scss', function() {
     return gulp.src([basedir + 'scss/**/*.scss', '!' + basedir + 'scss/**/_*.scss'])
         .pipe(sass())
-        .pipe(autoprefixer(browsers))
+        .pipe(postcss([ autoprefixer() ]))
         .pipe(gulp.dest(basedir + 'css/'))
 })
 

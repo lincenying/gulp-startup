@@ -18,7 +18,6 @@ div {
 
 
 /* 媒体查询 */
-
 @custom-media --small-viewport (max-width: 30em);
 @media (--small-viewport) {
     /* styles for small viewport */

@@ -1,0 +1,295 @@
+@charset "UTF-8";
+/* 清除内外边距 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li,
+pre,
+fieldset, button, input, textarea,
+th, td {
+  /* table elements 表格元素 */
+  margin: 0;
+  padding: 0; }
+
+/* 设置默认字体 */
+body,
+button, input, select, textarea {
+  /* for ie */
+  /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+  font-size: 12px;
+  font-family: 'Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif'; }
+
+h1 {
+  font-size: 18px;
+  /* 18px / 12px = 1.5 */ }
+
+h2 {
+  font-size: 16px; }
+
+h3 {
+  font-size: 14px; }
+
+h4, h5, h6 {
+  font-size: 100%; }
+
+address, cite, dfn, em, var {
+  font-style: normal; }
+
+/* 将斜体扶正 */
+code, kbd, pre, samp, tt {
+  font-family: "Courier New", Courier, monospace; }
+
+/* 统一等宽字体 */
+small {
+  font-size: 12px; }
+
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/* 重置列表元素 */
+ul, ol {
+  list-style: none; }
+
+/* 重置文本格式元素 */
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a:hover {
+  text-decoration: none; }
+
+abbr[title], acronym[title] {
+  /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+  border-bottom: 1px dotted;
+  cursor: help; }
+
+q:before, q:after {
+  content: ''; }
+
+/* 重置表单元素 */
+legend {
+  color: #000; }
+
+/* for ie6 */
+fieldset, img {
+  border: none; }
+
+/* img 搭车：让链接里的 img 无边框 */
+/* 注：optgroup 无法扶正 */
+button, input, select, textarea {
+  font-size: 100%;
+  /* 使得表单元素在 ie 下能继承字体大小 */ }
+
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+/* 重置表格元素 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* 重置 hr */
+hr {
+  border: none;
+  height: 1px; }
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+/* 其他常用样式 */
+.hidden {
+  display: none !important; }
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  box-shadow: none; }
+
+html {
+  font-size: 13.33333vw; }
+  @media screen and (max-width: 320px) {
+    html {
+      font-size: 42.66667px; } }
+  @media screen and (min-width: 540px) {
+    html {
+      font-size: 72px; } }
+
+nav {
+  width: 100px;
+  color: #f90; }
+
+.selected {
+  border: 1px solid #f90; }
+
+#content article h1 {
+  color: #333; }
+
+#content article p {
+  margin-bottom: 1.4em; }
+
+#content aside {
+  background-color: #eee; }
+
+article a {
+  color: blue; }
+  article a:hover {
+    color: red; }
+
+#content aside {
+  color: red; }
+  body.ie #content aside {
+    color: green; }
+
+.container h1,
+.container h2,
+.container h3 {
+  margin-bottom: 0.8em; }
+
+article ~ article {
+  border-top: 1px dashed #ccc; }
+
+article > section {
+  background: #eee; }
+
+article dl > dt {
+  color: #333; }
+
+article dl > dd {
+  color: #555; }
+
+nav + article {
+  margin-top: 0; }
+
+.notice {
+  background-color: green;
+  border: 2px solid #00aa00;
+  border-radius: 5px; }
+
+ul.plain {
+  color: #444;
+  list-style: none; }
+  ul.plain li {
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0; }
+
+a {
+  color: blue; }
+  a:hover {
+    color: red; }
+  a:visited {
+    color: green; }
+
+a {
+  color: red; }
+  a:hover {
+    color: red; }
+  a:visited {
+    color: red; }
+
+.error, .seriousError {
+  border: 1px solid blue;
+  background-color: #fdd; }
+
+.seriousError {
+  border-width: 3px; }
+
+p.foo {
+  border-color: blue; }
+
+.sidebar {
+  width: 300px; }
+  @media screen and (max-width: 320px) {
+    .sidebar {
+      width: 500px; } }
+
+.parent {
+  color: red; }
+  .child .child-1 {
+    color: blue; }
+  .child .child-2 {
+    color: yellow; }
+
+p {
+  border: 1px solid; }
+
+p {
+  color: green; }
+
+.item-1 {
+  width: 2em; }
+
+.item-2 {
+  width: 4em; }
+
+.item-3 {
+  width: 6em; }
+
+.puma-icon {
+  background-image: url("/images/puma.png"); }
+
+.sea-slug-icon {
+  background-image: url("/images/sea-slug.png"); }
+
+.egret-icon {
+  background-image: url("/images/egret.png"); }
+
+.salamander-icon {
+  background-image: url("/images/salamander.png"); }
+
+.puma-icon {
+  background-image: url("/images/puma.png");
+  border: 2px solid black;
+  cursor: default; }
+
+.sea-slug-icon {
+  background-image: url("/images/sea-slug.png");
+  border: 2px solid blue;
+  cursor: pointer; }
+
+.egret-icon {
+  background-image: url("/images/egret.png");
+  border: 2px solid white;
+  cursor: move; }
+
+h1 {
+  font-size: 2em; }
+
+h2 {
+  font-size: 1.5em; }
+
+h3 {
+  font-size: 1.2em; }
+
+.item-6 {
+  width: 12em; }
+
+.item-4 {
+  width: 8em; }
+
+.item-2 {
+  width: 4em; }
+
+.page-title {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff0000;
+  padding: 4px;
+  margin-top: 10px; }
+
+p {
+  border-color: blue;
+  border-width: 1in;
+  border-style: dashed; }
+
+.shadows {
+  box-shadow: 0 4px 5px #666, 2px 6px 10px #999; }
+
+.primary {
+  color: #ff0000;
+  background-color: #00ff00;
+  border-color: #0000ff; }
+
+* html #logo {
+  background-image: url(/logo.gif); }
+
+#sidebar {
+  width: 240px; }

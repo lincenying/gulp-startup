@@ -1,0 +1,316 @@
+@import '_reset';
+
+// 设计稿宽度
+$vm_design: 750;
+// 为什么设置 100? 设置成便于计算, 计算rem时只需要将 设计稿的宽度 / 100 即可
+// 如果给的是 375 的标注图, 也只需要将标注尺寸 * 2 / 100 即可
+$vm_fontsize: 100;
+html {
+    font-size: $vm_fontsize / $vm_design * 100vw;
+    // 同时，通过Media Queries 限制根元素最大最小值
+    @media screen and (max-width: 320px) {
+        font-size: 320px / $vm_design * $vm_fontsize;
+    }
+    @media screen and (min-width: 540px) {
+        font-size: 540px / $vm_design * $vm_fontsize;
+    }
+}
+
+// 变量声明
+$nav-color: #f90;
+nav {
+    $width: 100px;
+    width: $width;
+    color: $nav-color;
+}
+
+// 变量引用
+$highlight-color: #f90;
+.selected {
+    border: 1px solid $highlight-color;
+}
+
+// 嵌套CSS 规则
+#content {
+    article {
+        h1 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 1.4em;
+        }
+    }
+    aside {
+        background-color: #eee;
+    }
+}
+
+// 父选择器的标识符&
+article a {
+    color: blue;
+    &:hover {
+        color: red;
+    }
+}
+
+#content aside {
+    color: red;
+    body.ie & {
+        color: green;
+    }
+}
+
+// 群组选择器的嵌套
+.container {
+    h1,
+    h2,
+    h3 {
+        margin-bottom: 0.8em;
+    }
+}
+
+// 子组合选择器和同层组合选择器：>、+和~
+article {
+    ~ article {
+        border-top: 1px dashed #ccc;
+    }
+    > section {
+        background: #eee;
+    }
+    dl > {
+        dt {
+            color: #333;
+        }
+        dd {
+            color: #555;
+        }
+    }
+    nav + & {
+        margin-top: 0;
+    }
+}
+
+//混合器
+@mixin rounded-corners {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.notice {
+    background-color: green;
+    border: 2px solid #00aa00;
+    @include rounded-corners;
+}
+
+// 混合器中的CSS规则
+@mixin no-bullets {
+    list-style: none;
+    li {
+        list-style-image: none;
+        list-style-type: none;
+        margin-left: 0;
+    }
+}
+ul.plain {
+    color: #444;
+    @include no-bullets;
+}
+
+// 给混合器传参
+@mixin link-colors($normal, $hover, $visited) {
+    color: $normal;
+    &:hover {
+        color: $hover;
+    }
+    &:visited {
+        color: $visited;
+    }
+}
+a {
+    @include link-colors(blue, red, green);
+}
+
+// 默认参数值
+@mixin link-colors($normal, $hover: $normal, $visited: $normal) {
+    color: $normal;
+    &:hover {
+        color: $hover;
+    }
+    &:visited {
+        color: $visited;
+    }
+}
+
+a {
+    @include link-colors(red);
+}
+
+// 使用选择器继承来精简CSS
+.error {
+    border: 1px solid blue;
+    background-color: #fdd;
+}
+.seriousError {
+    @extend .error;
+    border-width: 3px;
+}
+
+// 插值语句 #{} (Interpolation: #{})
+$name: foo;
+$attr: border;
+p.#{$name} {
+    #{$attr}-color: blue;
+}
+
+// @media
+.sidebar {
+    width: 300px;
+    @media screen and (max-width: 320px) {
+        width: 500px;
+    }
+}
+
+// @at-root
+.parent {
+    color: red;
+    @at-root .child {
+        .child-1 {
+            color: blue;
+        }
+        .child-2 {
+            color: yellow;
+        }
+    }
+}
+
+// @if
+p {
+    @if 1 + 1 == 2 {
+        border: 1px solid;
+    }
+    @if 5 < 3 {
+        border: 2px dotted;
+    }
+    @if null {
+        border: 3px double;
+    }
+}
+
+// @if @else if
+$type: monster;
+p {
+    @if $type == ocean {
+        color: blue;
+    } @else if $type == matador {
+        color: red;
+    } @else if $type == monster {
+        color: green;
+    } @else {
+        color: black;
+    }
+}
+
+// @for
+@for $i from 1 through 3 {
+    .item-#{$i} {
+        width: 2em * $i;
+    }
+}
+
+// @each
+@each $animal in puma, sea-slug, egret, salamander {
+    .#{$animal}-icon {
+        background-image: url('/images/#{$animal}.png');
+    }
+}
+
+@each $animal, $color, $cursor in (puma, black, default), (sea-slug, blue, pointer), (egret, white, move) {
+    .#{$animal}-icon {
+        background-image: url('/images/#{$animal}.png');
+        border: 2px solid $color;
+        cursor: $cursor;
+    }
+}
+
+@each $header, $size in (h1: 2em, h2: 1.5em, h3: 1.2em) {
+    #{$header} {
+        font-size: $size;
+    }
+}
+
+// @while
+$i: 6;
+@while $i > 0 {
+    .item-#{$i} {
+        width: 2em * $i;
+    }
+    $i: $i - 2;
+}
+
+// 混合指令
+@mixin large-text {
+    font: {
+        family: Arial;
+        size: 20px;
+        weight: bold;
+    }
+    color: #ff0000;
+}
+.page-title {
+    @include large-text;
+    padding: 4px;
+    margin-top: 10px;
+}
+//////////////
+@mixin sexy-border($color, $width) {
+    border: {
+        color: $color;
+        width: $width;
+        style: dashed;
+    }
+}
+p {
+    @include sexy-border(blue, 1in);
+}
+//////////////
+@mixin box-shadow($shadows...) {
+    -moz-box-shadow: $shadows;
+    -webkit-box-shadow: $shadows;
+    box-shadow: $shadows;
+}
+.shadows {
+    @include box-shadow(0 4px 5px #666, 2px 6px 10px #999);
+}
+///////////////
+@mixin colors($text, $background, $border) {
+    color: $text;
+    background-color: $background;
+    border-color: $border;
+}
+$values: #ff0000, #00ff00, #0000ff;
+.primary {
+    @include colors($values...);
+}
+/////////////
+@mixin apply-to-ie6-only {
+    * html {
+        @content;
+    }
+}
+@include apply-to-ie6-only {
+    #logo {
+        background-image: url(/logo.gif);
+    }
+}
+
+// 函数指令
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+    @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar {
+    width: grid-width(5);
+}
