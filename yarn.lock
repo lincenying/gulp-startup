@@ -47,9 +47,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "14.11.7"
-  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.11.7.tgz#4d9673b8331ce262628ea89d9ef3964b6c1e5489"
-  integrity sha1-TZZzuDMc4mJijqidnvOWS2weVIk=
+  version "14.11.8"
+  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.11.8.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-14.11.8.tgz#fe2012f2355e4ce08bca44aeb3abbb21cf88d33f"
+  integrity sha1-/iAS8jVeTOCLykSus6u7Ic+I0z8=
 
 abbrev@1:
   version "1.1.1"
@@ -964,9 +964,9 @@ color-string@^0.3.0:
     color-name "^1.0.0"
 
 color-string@^1.4.0, color-string@^1.5.2:
-  version "1.5.3"
-  resolved "https://registry.npm.taobao.org/color-string/download/color-string-1.5.3.tgz#c9bbc5f01b58b5492f3d6857459cb6590ce204cc"
-  integrity sha1-ybvF8BtYtUkvPWhXRZy2WQziBMw=
+  version "1.5.4"
+  resolved "https://registry.npm.taobao.org/color-string/download/color-string-1.5.4.tgz#dd51cd25cfee953d138fe4002372cc3d0e504cb6"
+  integrity sha1-3VHNJc/ulT0Tj+QAI3LMPQ5QTLY=
   dependencies:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
