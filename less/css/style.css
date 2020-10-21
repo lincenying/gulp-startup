@@ -33,19 +33,18 @@ input,
 select,
 textarea {
   /* for ie */
-  /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
-  font-size: 12px;
+  font-size: 0.12rem;
   font-family: 'Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif';
 }
 h1 {
-  font-size: 18px;
+  font-size: 18PX;
   /* 18px / 12px = 1.5 */
 }
 h2 {
-  font-size: 16px;
+  font-size: 16PX;
 }
 h3 {
-  font-size: 14px;
+  font-size: 14PX;
 }
 h4,
 h5,
@@ -69,7 +68,7 @@ tt {
 }
 /* 统一等宽字体 */
 small {
-  font-size: 12px;
+  font-size: 12PX;
 }
 /* 小于 12px 的中文很难阅读，让 small 正常化 */
 /* 重置列表元素 */
@@ -88,7 +87,7 @@ a:hover {
 abbr[title],
 acronym[title] {
   /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
-  border-bottom: 1px dotted;
+  border-bottom: 0.01rem dotted;
   cursor: help;
 }
 q:before,
@@ -113,6 +112,10 @@ textarea {
   font-size: 100%;
   /* 使得表单元素在 ie 下能继承字体大小 */
 }
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
 /* 重置表格元素 */
 table {
   border-collapse: collapse;
@@ -121,12 +124,9 @@ table {
 /* 重置 hr */
 hr {
   border: none;
-  height: 1px;
+  height: 0.01rem;
 }
 /* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
-html {
-  overflow-y: scroll;
-}
 /* 其他常用样式 */
 .hidden {
   display: none !important;
@@ -136,25 +136,24 @@ html {
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
 html {
   font-size: 13.33333333vw;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 3.2rem) {
   html {
-    font-size: 42.6px;
+    font-size: 0.426667rem;
   }
 }
-@media screen and (min-width: 540px) {
+@media screen and (min-width: 5.4rem) {
   html {
-    font-size: 72px;
+    font-size: 0.72rem;
   }
 }
 body {
-  max-width: 540px;
-  min-width: 320px;
+  max-width: 5.4rem;
+  min-width: 3.2rem;
   margin: 0 auto;
   background: #f4f4f4;
   color: #000;
@@ -220,10 +219,8 @@ body {
 .wrap .box .item .group-image img {
   display: block;
   max-width: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 1px solid #000;
-  border-left-width: 0.01rem;
+  box-sizing: border-box;
+  border: 0.01rem solid #000;
 }
 .wrap .box .item .group-join {
   text-align: center;
@@ -235,8 +232,6 @@ body {
   width: 1.63rem;
   height: 0.55rem;
   border-radius: 0.275rem;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffc3c3), to(#f25f79));
-  background: -webkit-linear-gradient(top, #ffc3c3, #f25f79);
   background: linear-gradient(to bottom, #ffc3c3, #f25f79);
   font-size: 0.25rem;
   color: #fff;

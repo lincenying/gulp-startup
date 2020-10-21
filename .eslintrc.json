@@ -1,7 +1,6 @@
 {
-    "extends": ["prettier"],
-    "plugins": ["prettier"],
+    "extends": ["lcy-js"],
     "rules": {
-        "prettier/prettier": "error"
+        "no-irregular-whitespace": 0
     }
 }

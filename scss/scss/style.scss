@@ -16,6 +16,12 @@ html {
     }
 }
 
+// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
+body {
+    max-width: 540px;
+    min-width: 320px;
+}
+
 // 变量声明
 $nav-color: #f90;
 nav {
@@ -37,7 +43,7 @@ $highlight-color: #f90;
             color: #333;
         }
         p {
-            margin-bottom: 1.4em;
+            margin-bottom: 1.4rem;
         }
     }
     aside {
@@ -65,7 +71,7 @@ article a {
     h1,
     h2,
     h3 {
-        margin-bottom: 0.8em;
+        margin-bottom: 15px;
     }
 }
 
