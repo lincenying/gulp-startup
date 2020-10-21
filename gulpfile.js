@@ -14,6 +14,25 @@ const browsers = ['> 1%', 'last 3 versions', 'not ie <= 8']
 const basedir = 'less/' // <= 修改该路径
 const siteType = 'h5' // <= 网站类型:  h5 或者  web
 
+const processors = [
+    autoprefixer({
+        browsers
+    })
+]
+if (siteType === 'h5') {
+    processors.push(
+        pxtorem({
+            rootValue: 100,
+            unitPrecision: 6, // 转换后的精度，即小数点位数
+            propList: ['*'], // 指定可以转换的css属性，*代表全部css属性
+            selectorBlackList: ['van-circle__layer'], // 指定不转换为视窗单位的类名
+            mediaQuery: true, // 是否在媒体查询的css代码中也进行转换，默认false
+            minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
+            exclude: [/node_modules/] // 设置忽略文件，用正则做目录名匹配
+        })
+    )
+}
+
 gulp.task('auto_server', function () {
     return new Promise(function (resolve) {
         connect.server({
@@ -63,24 +82,6 @@ gulp.task('auto_task_scss', function (done) {
 
 // 编译less文件
 gulp.task('auto_less', function () {
-    const processors = [
-        autoprefixer({
-            browsers
-        })
-    ]
-    if (siteType === 'h5') {
-        processors.push(
-            pxtorem({
-                rootValue: 100,
-                unitPrecision: 6, // 转换后的精度，即小数点位数
-                propList: ['*'], // 指定可以转换的css属性，*代表全部css属性
-                selectorBlackList: ['van-circle__layer'], // 指定不转换为视窗单位的类名
-                mediaQuery: true, // 是否在媒体查询的css代码中也进行转换，默认false
-                minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
-                exclude: [/node_modules/] // 设置忽略文件，用正则做目录名匹配
-            })
-        )
-    }
     return gulp
         .src([basedir + 'less/**/*.less', '!' + basedir + 'less/**/_*.less'])
         .pipe(less())
@@ -98,24 +99,6 @@ gulp.task('auto_postcss', function () {
 
 // 编译scss文件
 gulp.task('auto_scss', function () {
-    const processors = [
-        autoprefixer({
-            browsers
-        })
-    ]
-    if (siteType === 'h5') {
-        processors.push(
-            pxtorem({
-                rootValue: 100,
-                unitPrecision: 6, // 转换后的精度，即小数点位数
-                propList: ['*'], // 指定可以转换的css属性，*代表全部css属性
-                selectorBlackList: ['van-circle__layer'], // 指定不转换为视窗单位的类名
-                mediaQuery: true, // 是否在媒体查询的css代码中也进行转换，默认false
-                minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
-                exclude: [/node_modules/] // 设置忽略文件，用正则做目录名匹配
-            })
-        )
-    }
     return gulp
         .src([basedir + 'scss/**/*.scss', '!' + basedir + 'scss/**/_*.scss'])
         .pipe(sass())
