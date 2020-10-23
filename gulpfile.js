@@ -12,14 +12,14 @@ const pxtorem = require('postcss-pxtorem')
 const browsers = ['> 1%', 'last 3 versions', 'not ie <= 8']
 
 const basedir = 'less/' // <= 修改该路径
-const siteType = 'h5' // <= 网站类型:  h5 或者  web
+const px2rem = false // <= 是否将单位 px 转成 rem [true | false]
 
 const processors = [
     autoprefixer({
         browsers
     })
 ]
-if (siteType === 'h5') {
+if (px2rem) {
     processors.push(
         pxtorem({
             rootValue: 100,

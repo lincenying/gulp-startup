@@ -31,7 +31,9 @@ gulp start_postcss
 
 打开 http://localhost:9092
 
-自己建立切图文件夹后, 记得修改`gulpfile.js`的`basedir` 和 `siteType`
+自己建立切图文件夹后, 记得修改`gulpfile.js`的`basedir` 和 `px2rem`
 
-siteType = h5 时:
+basedir: 相对当前项目根目录的相对地址
+
+px2rem = true 时:
 会将px单位自动转成rem, 默认比例100, 即设计稿宽度为750px, 书写时, css只需要写成设计稿的真实尺寸即可
