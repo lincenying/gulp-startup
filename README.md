@@ -29,7 +29,7 @@ npm run postcss  or  yarn postcss
 gulp start_postcss
 ```
 
-打开 http://localhost:9092
+打开 http://localhost:9091
 
 自己建立切图文件夹后, 记得修改`gulpfile.js`的`basedir` 和 `px2rem`
 

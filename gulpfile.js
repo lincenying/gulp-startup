@@ -37,7 +37,7 @@ gulp.task('auto_server', function () {
     return new Promise(function (resolve) {
         connect.server({
             root: basedir,
-            port: 9092,
+            port: 9091,
             livereload: true,
             // eslint-disable-next-line no-unused-vars
             middleware(connect, opt) {
