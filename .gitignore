@@ -9,3 +9,5 @@ test/e2e/reports
 daliangju/
 
 *-port.txt
+dist/
+rev/

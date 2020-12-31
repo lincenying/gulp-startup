@@ -18,10 +18,10 @@ html {
 @mixin width {
     width: 12rem;
     margin: 0 auto;
-    @media screen and (max-width: 1230px) {
+    @media screen and (max-width: 1230PX) {
         width: 100%;
     }
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1024PX) {
         width: 1024PX;
     }
 }

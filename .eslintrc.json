@@ -1,5 +1,9 @@
 {
     "extends": ["lcy-js"],
+    "globals": {
+        "Vue": true,
+        "echatrs": true
+    },
     "rules": {
         "no-irregular-whitespace": 0
     }
