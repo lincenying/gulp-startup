@@ -1,22 +1,26 @@
 # gulp-startup
 
-切图及活动页必备, 自动编译less/postcss/scss, 自动添加css3前缀, h5模式时, 自动将px转成rem, 自动刷新浏览器, 支持将es6变成es5
+切图及活动页必备, 自动编译less/scss, 自动添加css3前缀, 支持自动将px转成rem, 自动刷新浏览器, 支持将es6变成es5, 支持将pug编译成html
 
-在`src/scss|less`文件夹中, 入口文件正常命名, 其他被`import`的文件, 以下划线开头
+在`src/scss|less`文件夹中, 入口文件正常命名, 其他被`import`的文件, 放在子文件夹里, 如:
 src
     scss
         main.scss
         _plugin.scss
         _module.scss
-那么编译后, dist/css文件夹里只有main.css文件
+        module/plugin.scss
+        module/module.scss
+那么编译后, dist/css文件夹里只有main.css文件, 即入口文件放在scss文件夹下, 而被import的放在scss的子文件夹里(或以下划线开头命名)
 
-在`src/js`文件夹中, 入口文件正常命名, 其他被`require`的文件, 以下划线开头, 如:
+在`src/js`文件夹中, 入口文件正常命名, 其他被`require`的文件, 放在子文件夹里, 如:
 src
     js
         main.js
         _plugin.js
         _module.js
-那么编译后, dist/js文件夹里只有main.js文件
+        module/plugin.js
+        module/module.js
+那么编译后, dist/js文件夹里只有main.js文件, 即入口文件放在js文件夹下, 而被import的放在js的子文件夹里(或以下划线开头命名)
 
 src/assets 文件夹为静态资源文件夹, 如第三方插件, 字体文件, 和图片这类不需要经常改动的文件, 该文件夹会全部复制到dist文件夹下
 
@@ -35,12 +39,6 @@ npm run build_less  or  yarn build_less
 npm run scss  or  yarn scss
 # 生成模式
 npm run build_scss  or  yarn build_scss
-
-# postcss-salad 模式
-# 开发模式
-npm run postcss  or  yarn postcss
-# 生成模式
-npm run build_postcss  or  yarn build_postcss
 
 ```
 

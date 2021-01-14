@@ -1,0 +1,32 @@
+/*
+ * file: module/index.scss
+ */
+
+.wrap {
+    background: #fee2ea;
+    .top-wrap {
+        .top {
+            @include width;
+            height: 1rem;
+            background: red;
+        }
+    }
+    .center-wrap {
+        background: blue;
+        .center {
+            @include width;
+            height: 2rem;
+            background: yellow;
+            button {
+                width: 2.79rem;
+                height: 0.56rem;
+                background: #049cf3;
+                border-radius: 0.06rem;
+                border: none;
+                font-size: 0.24rem;
+                color: #ffffff;
+                line-height: 0.56rem;
+            }
+        }
+    }
+}

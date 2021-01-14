@@ -21,4 +21,11 @@ html
                     .group-join
                         a(href="xxx://app/group/15") 点击加入
                     .line
-        scrpit(src="./js/about.js")
+        script(type='text/javascript').
+            var script = document.createElement('script')
+            if (window.location.search.indexOf('debug') > -1 && window.location.hostname !== 'localhost') {
+                script.src = './js/about-debug.js'
+            } else {
+                script.src = './js/about.js'
+            }
+            document.body.appendChild(script)

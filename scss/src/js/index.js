@@ -1,3 +1,3 @@
-const utils = require('./_utils')
+const utils = require('./module/utils')
 
 console.log(utils.test())

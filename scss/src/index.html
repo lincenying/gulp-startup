@@ -11,6 +11,14 @@
     </head>
     <body>
         <div class="wrap"></div>
-        <script src="./js/index.js"></script>
+        <script>
+            var script = document.createElement('script')
+            if (window.location.search.indexOf('debug') > -1 && window.location.hostname !== 'localhost') {
+                script.src = './js/index-debug.js'
+            } else {
+                script.src = './js/index.js'
+            }
+            document.body.appendChild(script)
+        </script>
     </body>
 </html>

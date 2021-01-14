@@ -5,7 +5,6 @@ const less = require('gulp-less')
 const postcss = require('gulp-postcss')
 const sass = require('gulp-sass')
 const autoprefixer = require('autoprefixer')
-const salad = require('postcss-salad')
 const pxtorem = require('postcss-pxtorem')
 const cleanCSS = require('gulp-clean-css')
 
@@ -15,16 +14,16 @@ const proxy = require('http-proxy-middleware')
 
 // js相关
 const browserify = require('gulp-browserify')
-const babel = require('gulp-babel')
-const uglify = require('gulp-uglifyjs')
+// const babel = require('gulp-babel')
+const uglify = require('gulp-minify')
 
 // html 相关
 const pug = require('gulp-pug')
-
 // 版本号
 const rev = require('gulp-rev')
 const revCollector = require('gulp-rev-collector')
 const del = require('del')
+const replace = require('gulp-replace')
 
 // const cached = require('gulp-cached')
 
@@ -38,20 +37,25 @@ const port = 9091
 const src = {
     root: basedir + 'src/',
 
-    less: basedir + 'src/less/**/*.less',
+    less: basedir + 'src/less/*.less',
+    in_less: basedir + 'src/less/**/*.less',
     ex_less: '!' + basedir + 'src/less/**/_*.less',
 
-    postcss: basedir + 'src/css/**/*.css',
-    ex_postcss: '!' + basedir + 'src/css/**/_*.css',
-
-    scss: basedir + 'src/scss/**/*.scss',
+    scss: basedir + 'src/scss/*.scss',
+    in_scss: basedir + 'src/scss/**/*.scss',
     ex_scss: '!' + basedir + 'src/scss/**/_*.scss',
 
-    js: basedir + 'src/js/**/*.js',
+    js: basedir + 'src/js/*.js',
+    in_js: basedir + 'src/js/**/*.js',
     ex_js: '!' + basedir + 'src/js/**/_*.js',
 
-    pug: basedir + 'src/pug/**/*.pug',
-    html: basedir + 'src/**/*.html',
+    pug: basedir + 'src/pug/*.pug',
+    in_pug: basedir + 'src/pug/**/*.pug',
+    ex_pug: '!' + basedir + 'src/pug/**/_*.pug',
+
+    html: basedir + 'src/*.html',
+    in_html: basedir + 'src/**/*.html',
+
     assets: basedir + 'src/assets/**/*',
     rev_json: basedir + 'rev/**/*.json'
 }
@@ -116,7 +120,7 @@ gulp.task('auto_server', function () {
 // 自动任务
 // less 相关任务
 gulp.task('auto_task_less', function (done) {
-    const watcherLess = gulp.watch(src.less, gulp.series('compile_less'))
+    const watcherLess = gulp.watch(src.in_less, gulp.series('compile_less'))
     watcherLess.on('change', function (path) {
         console.log(`File ${path} was changed`)
     })
@@ -128,23 +132,10 @@ gulp.task('auto_task_less', function (done) {
     })
     done()
 })
-// postcss 相关任务
-gulp.task('auto_task_postcss', function (done) {
-    const watcherPostcss = gulp.watch(src.postcss, gulp.series('compile_postcss'))
-    watcherPostcss.on('change', function (path) {
-        console.log(`File ${path} was changed`)
-    })
-    watcherPostcss.on('add', function (path) {
-        console.log(`File ${path} was added`)
-    })
-    watcherPostcss.on('unlink', function (path) {
-        console.log(`File ${path} was removed`)
-    })
-    done()
-})
+
 // scss 相关任务
 gulp.task('auto_task_scss', function (done) {
-    const watcherScss = gulp.watch(src.scss, gulp.series('compile_scss'))
+    const watcherScss = gulp.watch(src.in_scss, gulp.series('compile_scss'))
     watcherScss.on('change', function (path) {
         console.log(`File ${path} was changed`)
     })
@@ -164,7 +155,7 @@ const assetsFunc = done => {
     done && done()
 }
 gulp.task('auto_task_other', function (done) {
-    const watcherPug = gulp.watch(src.pug, gulp.series('compile_pug'))
+    const watcherPug = gulp.watch(src.in_pug, gulp.series('compile_pug'))
     watcherPug.on('change', function (path) {
         console.log(`File ${path} was changed`)
     })
@@ -175,7 +166,7 @@ gulp.task('auto_task_other', function (done) {
         console.log(`File ${path} was removed`)
     })
 
-    const watcherJs = gulp.watch(src.js, gulp.series('compile_js'))
+    const watcherJs = gulp.watch(src.in_js, gulp.series('compile_js'))
     watcherJs.on('change', function (path) {
         console.log(`File ${path} was changed`)
     })
@@ -186,7 +177,7 @@ gulp.task('auto_task_other', function (done) {
         console.log(`File ${path} was removed`)
     })
 
-    const watcherHtml = gulp.watch(src.html, gulp.series('copy_html'))
+    const watcherHtml = gulp.watch(src.in_html, gulp.series('copy_html'))
     watcherHtml.on('change', function (path) {
         console.log(`File ${path} was changed`)
     })
@@ -222,7 +213,7 @@ gulp.task('copy_html', done => {
 
 // 编译pug文件
 gulp.task('compile_pug', done => {
-    gulp.src(src.pug).pipe(pug()).pipe(gulp.dest(src.root))
+    gulp.src([src.pug, src.ex_pug]).pipe(pug()).pipe(gulp.dest(src.root))
     done()
 })
 
@@ -246,31 +237,13 @@ gulp.task('prod_compile_less', done => {
     done()
 })
 
-// 开发环境编辑postcss文件
-gulp.task('compile_postcss', done => {
-    gulp.src([src.postcss, src.ex_postcss])
-        .pipe(postcss([salad({ browsers })]))
-        .pipe(gulp.dest(dist.css))
-        .pipe(connect.reload())
-    done()
-})
-// 生产环境编辑postcss文件
-gulp.task('prod_compile_postcss', done => {
-    gulp.src([src.postcss, src.ex_postcss])
-        .pipe(postcss([salad({ browsers })]))
-        .pipe(gulp.dest(dist.css))
-        .pipe(cleanCSS())
-        .pipe(rev())
-        .pipe(gulp.dest(dist.css))
-        //CSS 生成文件 hash 编码并生成 rev-manifest.json 文件，里面定义了文件名对照映射
-        .pipe(rev.manifest())
-        .pipe(gulp.dest(revs.css))
-    done()
-})
-
 // 开发环境编译scss文件
 gulp.task('compile_scss', done => {
-    gulp.src([src.scss, src.ex_scss]).pipe(sass()).pipe(postcss(processors)).pipe(gulp.dest(dist.css)).pipe(connect.reload())
+    gulp.src([src.scss, src.ex_scss])
+        .pipe(sass().on('error', sass.logError))
+        .pipe(postcss(processors))
+        .pipe(gulp.dest(dist.css))
+        .pipe(connect.reload())
     done()
 })
 // 生产环境编译scss文件
@@ -294,7 +267,8 @@ gulp.task('compile_js', done => {
         .pipe(
             browserify({
                 insertGlobals: true,
-                debug: true
+                debug: true,
+                transform: ['babelify']
             })
         )
         .pipe(gulp.dest(dist.js))
@@ -305,23 +279,20 @@ gulp.task('compile_js', done => {
 gulp.task('prod_compile_js', done => {
     gulp.src([src.js, src.ex_js])
         .pipe(
-            babel({
-                presets: ['@babel/preset-env']
-            })
-        )
-        .pipe(
             browserify({
                 insertGlobals: true,
-                debug: true
+                debug: true,
+                transform: ['babelify']
             })
         )
         .pipe(
-            babel({
-                presets: ['@babel/preset-env']
+            uglify({
+                ext: {
+                    src: '-debug.js',
+                    min: '.js'
+                }
             })
         )
-        .pipe(gulp.dest(dist.js))
-        .pipe(uglify())
         .pipe(rev())
         .pipe(gulp.dest(dist.js))
         .pipe(rev.manifest())
@@ -353,18 +324,7 @@ gulp.task(
         gulp.parallel('auto_server', 'auto_task_less', 'auto_task_other')
     )
 )
-gulp.task(
-    'start_postcss',
-    gulp.series(
-        'clean',
-        'compile_pug',
-        'compile_postcss',
-        'compile_js',
-        'copy_html',
-        'copy_assets',
-        gulp.parallel('auto_server', 'auto_task_postcss', 'auto_task_other')
-    )
-)
+
 gulp.task(
     'start_scss',
     gulp.series(
@@ -380,7 +340,6 @@ gulp.task(
 
 // 生产环境
 gulp.task('build_less', gulp.series('clean', 'compile_pug', 'prod_compile_less', 'prod_compile_js', 'copy_assets'))
-gulp.task('build_postcss', gulp.series('clean', 'compile_pug', 'prod_compile_postcss', 'prod_compile_js', 'copy_assets'))
 gulp.task('build_scss', gulp.series('clean', 'compile_pug', 'prod_compile_scss', 'prod_compile_js', 'copy_assets'))
 
 //生产环境 Html替换css、js文件版本
@@ -391,6 +350,7 @@ gulp.task('compile_html', done => {
                 replaceReved: true
             })
         )
+        .pipe(replace('vue.js', 'vue.min.js'))
         .pipe(gulp.dest(dist.root))
     done()
 })
