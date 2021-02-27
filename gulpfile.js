@@ -60,6 +60,14 @@ const src = {
     rev_json: basedir + 'rev/**/*.json'
 }
 
+const dev = {
+    root: basedir + 'dev/',
+    css: basedir + 'dev/css/',
+    js: basedir + 'dev/js/',
+    assets: basedir + 'dev/assets/',
+    html: basedir + 'dev/*.html'
+}
+
 const dist = {
     root: basedir + 'dist/',
     css: basedir + 'dist/css/',
@@ -96,7 +104,7 @@ if (px2rem) {
 gulp.task('auto_server', function () {
     return new Promise(function (resolve) {
         connect.server({
-            root: dist.root,
+            root: dev.root,
             port,
             livereload: true,
             // eslint-disable-next-line no-unused-vars
@@ -151,6 +159,11 @@ gulp.task('auto_task_scss', function (done) {
 
 const assetsFunc = done => {
     // return gulp.src([src.assets]).pipe(cached('assets')).pipe(gulp.dest(dist.assets))
+    gulp.src([src.assets]).pipe(gulp.dest(dev.assets))
+    done && done()
+}
+const prodAssetsFunc = done => {
+    // return gulp.src([src.assets]).pipe(cached('assets')).pipe(gulp.dest(dist.assets))
     gulp.src([src.assets]).pipe(gulp.dest(dist.assets))
     done && done()
 }
@@ -199,7 +212,7 @@ gulp.task('auto_task_other', function (done) {
     })
     watcherAssets.on('unlink', function (path) {
         console.log(`File ${path} was removed`)
-        del([path.replace('/src/', '/dist/')])
+        del([path.replace('/src/', '/dev/')])
     })
 
     done()
@@ -207,7 +220,7 @@ gulp.task('auto_task_other', function (done) {
 
 // 复制html文件
 gulp.task('copy_html', done => {
-    gulp.src([src.html]).pipe(gulp.dest(dist.root)).pipe(connect.reload())
+    gulp.src([src.html]).pipe(gulp.dest(dev.root)).pipe(connect.reload())
     done()
 })
 
@@ -219,7 +232,7 @@ gulp.task('compile_pug', done => {
 
 // 开发环境编译less文件
 gulp.task('compile_less', done => {
-    gulp.src([src.less, src.ex_less]).pipe(less()).pipe(postcss(processors)).pipe(gulp.dest(dist.css)).pipe(connect.reload())
+    gulp.src([src.less, src.ex_less]).pipe(less()).pipe(postcss(processors)).pipe(gulp.dest(dev.css)).pipe(connect.reload())
     done()
 })
 // 生产环境编译less文件
@@ -242,7 +255,7 @@ gulp.task('compile_scss', done => {
     gulp.src([src.scss, src.ex_scss])
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(processors))
-        .pipe(gulp.dest(dist.css))
+        .pipe(gulp.dest(dev.css))
         .pipe(connect.reload())
     done()
 })
@@ -271,7 +284,7 @@ gulp.task('compile_js', done => {
                 transform: ['babelify']
             })
         )
-        .pipe(gulp.dest(dist.js))
+        .pipe(gulp.dest(dev.js))
         .pipe(connect.reload())
     done()
 })
@@ -303,12 +316,17 @@ gulp.task('prod_compile_js', done => {
 
 // 清理所有编译后的文件
 gulp.task('clean', async done => {
+    await del([dev.css, dev.js, dev.assets, dev.html])
+    done()
+})
+gulp.task('prod_clean', async done => {
     await del([dist.css, dist.js, dist.assets, dist.html])
     done()
 })
 
 // 复制文件
 gulp.task('copy_assets', assetsFunc)
+gulp.task('prod_copy_assets', prodAssetsFunc)
 gulp.task('watch_assets', assetsFunc)
 
 // 开发环境
@@ -339,8 +357,8 @@ gulp.task(
 )
 
 // 生产环境
-gulp.task('build_less', gulp.series('clean', 'compile_pug', 'prod_compile_less', 'prod_compile_js', 'copy_assets'))
-gulp.task('build_scss', gulp.series('clean', 'compile_pug', 'prod_compile_scss', 'prod_compile_js', 'copy_assets'))
+gulp.task('build_less', gulp.series('prod_clean', 'compile_pug', 'prod_compile_less', 'prod_compile_js', 'prod_copy_assets'))
+gulp.task('build_scss', gulp.series('prod_clean', 'compile_pug', 'prod_compile_scss', 'prod_compile_js', 'prod_copy_assets'))
 
 //生产环境 Html替换css、js文件版本
 gulp.task('compile_html', done => {
