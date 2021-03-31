@@ -1,6 +1,6 @@
 # gulp-startup
 
-切图及活动页必备, 自动编译less/scss, 自动添加css3前缀, 支持自动将px转成rem, 自动刷新浏览器, 支持将es6变成es5, 支持将pug编译成html
+切图及活动页必备, 支持tailwindcss, 自动编译less/scss, 自动添加css3前缀, 支持自动将px转成rem, 自动刷新浏览器, 支持将es6变成es5, 支持将pug编译成html
 
 在`src/scss|less`文件夹中, 入口文件正常命名, 其他被`import`的文件, 放在子文件夹里, 如:
 src
@@ -50,3 +50,6 @@ basedir: 相对当前项目根目录的相对地址
 
 px2rem = true 时:
 会将px单位自动转成rem, 默认比例100(可以自行根据需求修改`rootValue`的值), 即设计稿宽度为750px, 书写时, css只需要写成设计稿的真实尺寸即可
+
+openTailwind = true 时:
+将会开启Tailwind功能, 如果开启, 需要在`src`文件夹下创建`tailwind/tailwind.css`文件, 用于存储生成的文件
