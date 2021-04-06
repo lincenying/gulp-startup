@@ -145,6 +145,7 @@ const lessTask = async path => {
     })
 }
 const getLessFile = path => {
+    path = path.replace(/\\/g, '/')
     let file = path.replace(basedir + 'src/less/', '').split('/')[0]
     if (file.indexOf('.') > -1) {
         file = file.split('.')[0]
