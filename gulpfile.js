@@ -393,7 +393,7 @@ const prodAssetsFunc = done => {
 
 // 复制html文件
 const copyHtml = async path => {
-    path = path ? [path] : [src.html]
+    path = path ? [path.replace(/\\/g, '/')] : [src.html]
     await new Promise(resolve => {
         const tmp = gulp.src(path).pipe(gulp.dest(dev.root))
         if (path) {
